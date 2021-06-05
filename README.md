@@ -20,6 +20,7 @@
 |gets all messages from specific user|GET|/messages/$username|  |{messages: ["message 1", "message 2", ...]}|
 |top 10 chatters by messages count|GET|/stats/top| |{top: [{username: "user", count: 239}, ...]}|
 |gets all current messages, filtered by date (date filter is optional)|GET|/all-messages|{from:?$date, to:?$date}|{messages: [{id: id, username: "user", message: "message", replyTo:? optionalInt}, ...]}|
+
 Приложение требуется выложить на любой публичный сервис (рекомендую Heroku), в пулреквесте к репозиторию нужно приложить весь код приложения, запись демо работы приложения и ссылку на публичный доступ к вашему приложению.
 
 ## Билет 1
