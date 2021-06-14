@@ -54,6 +54,7 @@ function onError(error) {
 
 function sendMessage(event) {
     var messageContent = messageInput.value.trim();
+
     if(messageContent && stompClient) {
         var chatMessage = {
             sender: username,
@@ -69,6 +70,7 @@ function sendMessage(event) {
 
 function onMessageReceived(payload) {
     var message = JSON.parse(payload.body);
+    console.log("HELLO!" + payload.body);
 
     var messageElement = document.createElement('li');
 
@@ -92,11 +94,22 @@ function onMessageReceived(payload) {
         var usernameText = document.createTextNode(message.sender);
         usernameElement.appendChild(usernameText);
         messageElement.appendChild(usernameElement);
+
+    }
+    if (message.type !== 'JOIN' && message.type !== 'LEAVE') {
+        var textElement = document.createElement('p');
+        var messageText = document.createTextNode("#" + message.id + " " + message.content);
+    }
+    else
+    {
+        var textElement = document.createElement('p');
+        var messageText = document.createTextNode( message.content);
+
     }
 
-    var textElement = document.createElement('p');
-    var messageText = document.createTextNode(message.content);
+
     textElement.appendChild(messageText);
+
 
     messageElement.appendChild(textElement);
 
