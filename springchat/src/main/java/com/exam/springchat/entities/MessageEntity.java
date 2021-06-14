@@ -19,6 +19,9 @@ public class MessageEntity {
     @Column(name = "message_text")
     private String text;
 
+    @Column(name = "message_date")
+    private String date;
+
     public MessageEntity(){
 
     }
@@ -45,5 +48,13 @@ public class MessageEntity {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

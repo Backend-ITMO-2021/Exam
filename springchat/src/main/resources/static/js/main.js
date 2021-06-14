@@ -98,20 +98,28 @@ function onMessageReceived(payload) {
     }
     if (message.type !== 'JOIN' && message.type !== 'LEAVE') {
         var textElement = document.createElement('p');
-        var messageText = document.createTextNode("#" + message.id + " " + message.content);
+        var textElement2 = document.createElement('p');
+        var messageText = document.createTextNode("#" + message.id + " - " + message.date +'\n' );
+        var messageText2 = document.createTextNode(message.content);
+        textElement.appendChild(messageText);
+        textElement2.appendChild(messageText2);
+        messageElement.appendChild(textElement);
+        messageElement.appendChild(textElement2);
     }
     else
     {
         var textElement = document.createElement('p');
         var messageText = document.createTextNode( message.content);
+        textElement.appendChild(messageText);
+        messageElement.appendChild(textElement);
 
     }
 
 
-    textElement.appendChild(messageText);
 
 
-    messageElement.appendChild(textElement);
+
+
 
     messageArea.appendChild(messageElement);
     messageArea.scrollTop = messageArea.scrollHeight;

@@ -6,6 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+
+import java.util.Date;
 import java.util.List;
 
 public class ChatMessage {
@@ -13,6 +15,7 @@ public class ChatMessage {
     private String content;
     private String sender;
     private Integer id;
+    private String date;
 
     public ChatMessage(MessageType type, String content, String sender) {
 
@@ -21,14 +24,16 @@ public class ChatMessage {
         this.sender = sender;
         if (this.type == MessageType.CHAT){
 
+            this.date = new Date().toString();
+
 
             MessageEntity messageEntity = new MessageEntity();
             messageEntity.setSender(this.sender);
-
             messageEntity.setText(this.content);
+            messageEntity.setDate(this.date);
             InitiateUtils.saveM(messageEntity);
             this.id=messageEntity.getId();
-            System.out.println("Chat message: "+this.id + "");
+            System.out.println("Chat message: "+this.date + "");
             if (this.content.equals("GETM"))
             {
                 InitiateUtils.getM();
@@ -75,5 +80,13 @@ public class ChatMessage {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }
