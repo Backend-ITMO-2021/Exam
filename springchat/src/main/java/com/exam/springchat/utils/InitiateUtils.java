@@ -21,12 +21,11 @@ public class InitiateUtils implements CommandLineRunner {
         messageService.save(messageEntity);
     }
 
-    public static void getM(){
+    public static List<MessageEntity> getM(){
         List<MessageEntity> all = messageService.getAll();
 
-        for (MessageEntity entity : all) {
-            System.out.println("Id"+entity.getId()+" Sender:" + entity.getSender() + " Message: " + entity.getText());
-        }
+
+        return all;
     }
     @Override
 
