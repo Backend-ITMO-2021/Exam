@@ -15,6 +15,7 @@ public class ChatMessage {
     private String content;
     private String sender;
     private Integer id;
+    private Integer reply;
     private String date;
 
     public ChatMessage(MessageType type, String content, String sender) {
@@ -22,15 +23,27 @@ public class ChatMessage {
         this.type = type;
         this.content = content;
         this.sender = sender;
+
         if (this.type == MessageType.CHAT){
 
             this.date = new Date().toString();
 
+            if (this.content.startsWith("-> #")){
+                String str = this.content.substring(4);
+                String replyid = str.split(" ")[0];
+                this.reply=Integer.parseInt(replyid);
+                this.content = str.substring(replyid.length());
+            }
+            else
+            {
+                this.reply = null;
+            }
 
             MessageEntity messageEntity = new MessageEntity();
             messageEntity.setSender(this.sender);
             messageEntity.setText(this.content);
             messageEntity.setDate(this.date);
+            messageEntity.setReply(this.reply);
             InitiateUtils.saveM(messageEntity);
             this.id=messageEntity.getId();
             System.out.println("Chat message: "+this.date + "");
@@ -38,6 +51,7 @@ public class ChatMessage {
             {
                 InitiateUtils.getM();
             }
+
             }
 
         }
@@ -88,5 +102,13 @@ public class ChatMessage {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public Integer getReply() {
+        return reply;
+    }
+
+    public void setReply(Integer reply) {
+        this.reply = reply;
     }
 }

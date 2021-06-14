@@ -22,12 +22,12 @@ body {
 }
 
 body:before {
-    height: 50%;
+    height: 100%;
     width: 100%;
     position: absolute;
     top: 0;
     left: 0;
-    background: #128ff2;
+    background: #000000;
     content: "";
     z-index: 0;
 }
@@ -68,7 +68,7 @@ h1 {
 }
 
 a {
-    color: #128ff2;
+    color: #000000;
 }
 
 button {
@@ -139,14 +139,12 @@ button.accent {
 }
 
 .chat-container {
-    max-width: 700px;
     margin-left: auto;
     margin-right: auto;
     background-color: #fff;
-    box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
-    margin-top: 30px;
-    height: calc(100% - 60px);
-    max-height: 600px;
+    box-shadow: 0 1px 11px rgba(255, 255, 255, 0.27);
+    margin-bottom: 30px;
+    height: calc(100%);
     position: relative;
 }
 
@@ -254,15 +252,13 @@ button.accent {
 @media screen and (max-width: 730px) {
 
     .chat-container {
-        margin-left: 10px;
-        margin-right: 10px;
-        margin-top: 10px;
+
     }
 }
 
 @media screen and (max-width: 480px) {
     .chat-container {
-        height: calc(100% - 30px);
+        height: calc(100%);
     }
 
     .username-page-container {

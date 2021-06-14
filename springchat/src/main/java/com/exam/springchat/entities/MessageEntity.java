@@ -22,6 +22,9 @@ public class MessageEntity {
     @Column(name = "message_date")
     private String date;
 
+    @Column(name = "message_reply")
+    private Integer reply;
+
     public MessageEntity(){
 
     }
@@ -52,6 +55,14 @@ public class MessageEntity {
 
     public String getDate() {
         return date;
+    }
+
+    public Integer getReply() {
+        return reply;
+    }
+
+    public void setReply(Integer reply) {
+        this.reply = reply;
     }
 
     public void setDate(String date) {

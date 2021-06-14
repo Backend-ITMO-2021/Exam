@@ -23,6 +23,7 @@ public class AllMResponse {
                 map.put("username",entity.getSender());
                 map.put("message",entity.getText());
                 map.put("date",entity.getDate());
+                map.put("replyTo", entity.getReply());
 
 
                 messages.add(map);
