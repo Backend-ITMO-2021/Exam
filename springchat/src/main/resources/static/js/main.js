@@ -86,7 +86,7 @@ function sendMessage(event) {
 function onMessageReceived2(payload){
     console.log("Hi!" + payload.body);
     var message = JSON.parse(payload.body);
-    var url = 'http://localhost:8080/messages/'+message.content;
+    var url = '/messages/'+message.content;
     window.open(url);
 }
 
