@@ -5,6 +5,8 @@ var chatPage = document.querySelector('#chat-page');
 var usernameForm = document.querySelector('#usernameForm');
 var messageForm = document.querySelector('#messageForm');
 var messageInput = document.querySelector('#message');
+var filterForm = document.querySelector('#filterForm');
+var filterInput = document.querySelector('#filter');
 var messageArea = document.querySelector('#messageArea');
 var connectingElement = document.querySelector('.connecting');
 
@@ -35,7 +37,7 @@ function connect(event) {
 function onConnected() {
 
     stompClient.subscribe('/topic/public', onMessageReceived);
-
+    stompClient.subscribe('/topic/public2', onMessageReceived2);
 
     stompClient.send("/app/chat.addUser",
         {},
@@ -51,6 +53,20 @@ function onError(error) {
     connectingElement.style.color = 'red';
 }
 
+function sendMessage2(event) {
+    var messageContent = filterInput.value.trim();
+
+    if(messageContent && stompClient) {
+        var filterMessage = {
+            sender: username,
+            content: filterInput.value,
+            type: 'CHAT'
+        };
+        stompClient.send("/app/chat.sendFilter", {}, JSON.stringify(filterMessage));
+        filterInput.value = '';
+    }
+    event.preventDefault();
+}
 
 function sendMessage(event) {
     var messageContent = messageInput.value.trim();
@@ -67,6 +83,12 @@ function sendMessage(event) {
     event.preventDefault();
 }
 
+function onMessageReceived2(payload){
+    console.log("Hi!" + payload.body);
+    var message = JSON.parse(payload.body);
+    var url = 'http://localhost:8080/messages/'+message.content;
+    window.open(url);
+}
 
 function onMessageReceived(payload) {
     var message = JSON.parse(payload.body);
@@ -122,12 +144,6 @@ function onMessageReceived(payload) {
 
     }
 
-
-
-
-
-
-
     messageArea.appendChild(messageElement);
     messageArea.scrollTop = messageArea.scrollHeight;
 }
@@ -143,4 +159,5 @@ function getAvatarColor(messageSender) {
 }
 
 usernameForm.addEventListener('submit', connect, true)
+filterForm.addEventListener('submit', sendMessage2, true)
 messageForm.addEventListener('submit', sendMessage, true)

@@ -155,10 +155,14 @@ button.accent {
     overflow: auto;
     overflow-y: scroll;
     padding: 0 20px 0px 20px;
-    height: calc(100% - 150px);
+    height: calc(100% - 250px);
 }
 
 #chat-page #messageForm {
+    padding: 20px;
+}
+
+#chat-page #filterForm {
     padding: 20px;
 }
 
@@ -227,6 +231,17 @@ button.accent {
     height: 38px;
     margin-left: 5px;
 }
+#filterForm .input-group input {
+    float: right;
+    width: calc(50% - 85px);
+}
+
+#filterForm .input-group button {
+    float: right;
+    width: 80px;
+    height: 38px;
+    margin-left: 5px;
+}
 
 .chat-header {
     text-align: center;
@@ -278,6 +293,15 @@ button.accent {
 
     #messageForm .input-group input {
         width: calc(100% - 70px);
+    }
+
+
+    #filterForm .input-group button {
+        width: 65px;
+    }
+
+    #filterForm .input-group input {
+        width: calc(50% - 70px);
     }
 
     .chat-header {

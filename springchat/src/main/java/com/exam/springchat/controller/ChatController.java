@@ -16,6 +16,12 @@ public class ChatController {
         return chatMessage;
     }
 
+    @MessageMapping("/chat.sendFilter")
+    @SendTo("/topic/public2")
+    public ChatMessage sendFilter(@Payload ChatMessage chatMessage) {
+        return chatMessage;
+    }
+
     @MessageMapping("/chat.addUser")
     @SendTo("/topic/public")
     public ChatMessage addUser(@Payload ChatMessage chatMessage,
